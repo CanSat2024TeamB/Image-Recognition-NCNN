@@ -101,7 +101,7 @@ std::array<float, 2> get_pos(pybind11::array_t<uint8_t>& image, float prob_thres
 		float x = (result[0][0] + result[0][2]) / 2;
 		float y = (result[0][1] + result[0][3]) / 2;
 		float norm_x = 2 * x / CAMERA_WIDTH - 1;
-		float norm_y = 2 * y / CAMERA_HEIGHT - 1;
+		float norm_y = 1 - 2 * y / CAMERA_HEIGHT;
 		return { norm_x, norm_y };
 	}
 	else {

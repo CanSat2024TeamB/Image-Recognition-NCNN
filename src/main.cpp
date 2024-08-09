@@ -1,4 +1,5 @@
 #include <iostream>
+#include <opencv2/opencv.hpp>
 #include "detect.h"
 
 cv::VideoCapture camera(0);

@@ -48,11 +48,11 @@ std::vector<std::array<float, 5>> nms(std::vector<std::array<float, 5>>& bboxes,
 	return result;
 }
 
-std::vector<std::array<float, 5>> detect(cv::Mat& image, float prob_threshold) {
-	int image_width = image.cols;
-	int image_height = image.rows;
+std::vector<std::array<float, 5>> detect(pybind11::array_t<uint8_t>& image, float prob_threshold) {
+	int image_width = image.shape(1);
+	int image_height = image.shape(0);
 
-	ncnn::Mat in = ncnn::Mat::from_pixels_resize(image.data, ncnn::Mat::PIXEL_BGR, image_width, image_height, IMGSZ, IMGSZ);
+	ncnn::Mat in = ncnn::Mat::from_pixels_resize((unsigned char*)image.data(), ncnn::Mat::PIXEL_BGR, image_width, image_height, IMGSZ, IMGSZ);
 	const float norm_values[3] = { 1 / 255.0f , 1 / 255.0f, 1 / 255.0f };
 	in.substract_mean_normalize(0, norm_values);
 
@@ -85,8 +85,7 @@ std::vector<std::array<float, 5>> detect(cv::Mat& image, float prob_threshold) {
 	return nms(out_vec, IOU_THRESHOLD);
 }
 
-std::pair<std::array<float, 4>, float> get_data(pybind11::array_t<uint8_t>& data, float prob_threshold) {
-	cv::Mat image(data.shape(0), data.shape(1), CV_8UC3, (unsigned char*)data.data());
+std::pair<std::array<float, 4>, float> get_data(pybind11::array_t<uint8_t>& image, float prob_threshold) {
 	std::vector<std::array<float, 5>> result = detect(image, prob_threshold);
 	if (result.size() > 0) {
 		return { {result[0][0], result[0][1], result[0][2], result[0][3]}, result[0][4] };
@@ -96,8 +95,7 @@ std::pair<std::array<float, 4>, float> get_data(pybind11::array_t<uint8_t>& data
 	}
 }
 
-std::array<float, 2> get_pos(pybind11::array_t<uint8_t>& data, float prob_threshold) {
-	cv::Mat image(data.shape(0), data.shape(1), CV_8UC3, (unsigned char*)data.data());
+std::array<float, 2> get_pos(pybind11::array_t<uint8_t>& image, float prob_threshold) {
 	std::vector<std::array<float, 5>> result = detect(image, prob_threshold);
 	if (result.size() > 0) {
 		float x = (result[0][0] + result[0][2]) / 2;

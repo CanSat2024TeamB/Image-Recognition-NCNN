@@ -34,8 +34,8 @@ std::vector<std::array<float, 5>> nms(std::vector<std::array<float, 5>>& bboxes,
 			std::array<float, 5> target = bboxes[i];
 			float target_area = (target[2] - target[0]) * (target[3] - target[1]);
 
-			float w = std::max(0.0f, std::min(base[2], target[2]) - std::max(base[0], target[0]));
-			float h = std::max(0.0f, std::min(base[3], target[3]) - std::max(base[1], target[1]));
+			float w = (std::max)(0.0f, (std::min)(base[2], target[2]) - (std::max)(base[0], target[0]));
+			float h = (std::max)(0.0f, (std::min)(base[3], target[3]) - (std::max)(base[1], target[1]));
 
 			float overlap_area = w * h;
 			float iou = overlap_area / (base_area + target_area - overlap_area);

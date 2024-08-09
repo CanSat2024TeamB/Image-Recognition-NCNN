@@ -15,16 +15,45 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="detect.cpp">
+    <ClCompile Include="src\detect.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="detect.h">
+    <ClInclude Include="src\detect.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="model\cone_ncnn_model_v9_128\model.ncnn.bin">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="model\cone_ncnn_model_v9_320\model.ncnn.bin">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="model\cone_ncnn_model_v9_320_opt\model.ncnn.bin">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="model\cone_ncnn_model_v9_128\metadata.yaml">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="model\cone_ncnn_model_v9_320\metadata.yaml">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="model\cone_ncnn_model_v9_320_opt\metadata.yaml">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="model\cone_ncnn_model_v9_128\model.ncnn.param">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="model\cone_ncnn_model_v9_320\model.ncnn.param">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="model\cone_ncnn_model_v9_320_opt\model.ncnn.param">
+      <Filter>リソース ファイル</Filter>
+    </None>
   </ItemGroup>
 </Project>

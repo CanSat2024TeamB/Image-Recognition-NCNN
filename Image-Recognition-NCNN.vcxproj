@@ -70,6 +70,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ExternalIncludePath>I:\Program Files\ncnn\x64\include;I:\Program Files\opencv\build\include;D:\source\Visual Studio Code\repos\curvus\Image-Recognition-NCNN\pybind11\include;C:\Users\Admin\AppData\Local\Programs\Python\Python310\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>I:\Program Files\ncnn\x64\lib;I:\Program Files\opencv\build\x64\vc16\lib;C:\Users\Admin\AppData\Local\Programs\Python\Python310\libs;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -104,10 +108,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ncnn.lib;opencv_world490d.lib;python310.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -127,11 +133,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="detect.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\detect.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="detect.h" />
+    <ClInclude Include="src\detect.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="model\cone_ncnn_model_v9_128\metadata.yaml" />
+    <None Include="model\cone_ncnn_model_v9_128\model.ncnn.bin" />
+    <None Include="model\cone_ncnn_model_v9_128\model.ncnn.param" />
+    <None Include="model\cone_ncnn_model_v9_320\metadata.yaml" />
+    <None Include="model\cone_ncnn_model_v9_320\model.ncnn.bin" />
+    <None Include="model\cone_ncnn_model_v9_320\model.ncnn.param" />
+    <None Include="model\cone_ncnn_model_v9_320_opt\metadata.yaml" />
+    <None Include="model\cone_ncnn_model_v9_320_opt\model.ncnn.bin" />
+    <None Include="model\cone_ncnn_model_v9_320_opt\model.ncnn.param" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
